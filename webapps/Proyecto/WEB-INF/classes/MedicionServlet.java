@@ -8,11 +8,11 @@ import javax.servlet.annotation.*;
 public class MedicionServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        // Obtener ruta real de la base de datos
+        //Real rute 
         String ruta = getServletContext().getRealPath("/WEB-INF/tren.accdb");
         InsertadorSensores insertador = new InsertadorSensores(ruta);
 
-        // Fecha/hora actual (o la que quieras, ej. +1 minuto)
+        //Fecha/hora actual 
         Timestamp ahora = new Timestamp(System.currentTimeMillis());
 
         try {
