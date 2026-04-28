@@ -148,3 +148,8 @@
 28-Apr-2026 18:13:02.819 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Mac\Home\Documents\GitHub\JavaLana\webapps\prueba] has finished in [1.280] ms
 28-Apr-2026 18:13:02.837 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8082"]
 28-Apr-2026 18:13:02.889 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.start Server startup in [9853] milliseconds
+28-Apr-2026 19:32:38.970 INFORMACIÓN [main] org.apache.catalina.core.StandardServer.await Se ha recibido un comando de apagado a través del puerto de apagado. Parando la instancia del Servidor.
+28-Apr-2026 19:32:38.975 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8082"]
+28-Apr-2026 19:32:39.017 INFORMACIÓN [main] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+28-Apr-2026 19:32:39.137 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8082"]
+28-Apr-2026 19:32:39.143 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8082"]

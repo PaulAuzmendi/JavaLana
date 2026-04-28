@@ -7,247 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg-dark: #0a1628;
-    --bg-darker: #050d1a;
-    --train-fill: #2a3a4f;
-    --train-stroke: #4a5d7a;
-    --accent: #4dd0e1;
-    --accent-bright: #7de4ed;
-    --accent-dim: #2c8aa0;
-    --text-light: #c5d3e8;
-    --text-dim: #6c7a93;
-    --label-bg: rgba(20, 35, 60, 0.55);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Chakra Petch', sans-serif;
-    background:
-      radial-gradient(ellipse at top, rgba(77, 208, 225, 0.06), transparent 60%),
-      var(--bg-dark);
-    color: var(--text-light);
-    min-height: 100vh;
-    padding: 40px 20px 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  header {
-    text-align: center;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: clamp(1.3rem, 3vw, 2.4rem);
-    font-weight: 500;
-    letter-spacing: 3px;
-    color: var(--accent);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-    color: var(--text-dim);
-    letter-spacing: 1.5px;
-    margin-bottom: 28px;
-  }
-
-  .section-title {
-    display: inline-block;
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 5px;
-    color: var(--text-light);
-    padding: 10px 28px;
-    position: relative;
-    text-transform: uppercase;
-  }
-  .section-title::before,
-  .section-title::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-dim));
-  }
-  .section-title::before { right: 100%; transform: scaleX(-1); }
-  .section-title::after { left: 100%; }
-
-  .toggle-btn {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    padding: 11px 28px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    margin: 24px 0 10px;
-    text-transform: uppercase;
-    border-radius: 2px;
-  }
-  .toggle-btn:hover {
-    background: rgba(77, 208, 225, 0.12);
-    box-shadow: 0 0 18px rgba(77, 208, 225, 0.35);
-  }
-  .toggle-btn:active {
-    transform: translateY(1px);
-  }
-
-  .train-container {
-    width: 100%;
-    max-width: 1200px;
-    position: relative;
-  }
-
-  .view {
-    display: none;
-    width: 100%;
-    height: auto;
-  }
-  .view.active {
-    display: block;
-    animation: fadeIn 0.4s ease;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .bottom-buttons {
-    display: flex;
-    gap: 18px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .bottom-buttons form { margin: 0; }
-
-  .action-btn {
-    background: rgba(77, 208, 225, 0.06);
-    border: 1px solid var(--accent-dim);
-    color: var(--accent);
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    padding: 14px 30px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    text-transform: uppercase;
-    border-radius: 2px;
-  }
-  .action-btn:hover {
-    background: rgba(77, 208, 225, 0.16);
-    border-color: var(--accent);
-    box-shadow: 0 0 20px rgba(77, 208, 225, 0.3);
-  }
-  .action-btn:active {
-    transform: translateY(1px);
-  }
-
-  /* SVG element styling */
-  .train-body {
-    fill: var(--train-fill);
-    stroke: var(--train-stroke);
-    stroke-width: 2;
-  }
-  .train-window {
-    fill: var(--bg-darker);
-    stroke: var(--train-stroke);
-    stroke-width: 1.5;
-  }
-  .train-wheel {
-    fill: #050a14;
-    stroke: var(--train-stroke);
-    stroke-width: 2;
-  }
-  .windshield {
-    fill: var(--bg-darker);
-    stroke: var(--train-stroke);
-    stroke-width: 1.5;
-    opacity: 0.85;
-  }
-  .center-line {
-    stroke: var(--train-stroke);
-    stroke-width: 1;
-    stroke-dasharray: 5 5;
-    opacity: 0.5;
-    fill: none;
-  }
-  .sensor-box {
-    fill: var(--label-bg);
-    stroke: var(--accent);
-    stroke-width: 1.4;
-  }
-  .sensor-label {
-    fill: var(--accent);
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1.4px;
-    text-anchor: middle;
-  }
-  .sensor-line {
-    stroke: var(--accent);
-    stroke-width: 1;
-    stroke-dasharray: 4 4;
-    fill: none;
-    opacity: 0.85;
-  }
-  .sensor-dot {
-    fill: var(--accent);
-    stroke: var(--bg-dark);
-    stroke-width: 1;
-  }
-
-  /* Interactive sensor groups */
-  .sensor-group {
-    cursor: pointer;
-  }
-  .sensor-group .sensor-box,
-  .sensor-group .sensor-label,
-  .sensor-group .sensor-line,
-  .sensor-group .sensor-dot {
-    transition: all 0.2s ease;
-  }
-  .sensor-group:hover {
-    filter: drop-shadow(0 0 8px rgba(125, 228, 237, 0.7));
-  }
-  .sensor-group:hover .sensor-box {
-    fill: rgba(77, 208, 225, 0.18);
-    stroke: var(--accent-bright);
-    stroke-width: 2;
-  }
-  .sensor-group:hover .sensor-label {
-    fill: var(--accent-bright);
-  }
-  .sensor-group:hover .sensor-line {
-    stroke: var(--accent-bright);
-    opacity: 1;
-    stroke-width: 1.5;
-  }
-  .sensor-group:hover .sensor-dot {
-    fill: var(--accent-bright);
-  }
-  .sensor-group:focus {
-    outline: none;
-  }
-  .sensor-group:focus .sensor-box {
-    stroke: var(--accent-bright);
-    stroke-width: 2;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -289,44 +49,44 @@
     <!-- ============ SENSOR ANNOTATIONS ============ -->
 
     <!-- TEMPERATURA EXTERIOR (top-left -> roof) -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Temperatura Exterior">
+    <a class="sensor-group" href="verSensor?id=temperaturaExterior" aria-label="Temperatura Exterior">
       <rect class="sensor-box" x="80" y="100" width="240" height="42" rx="4"/>
       <text class="sensor-label" x="200" y="126">TEMPERATURA EXTERIOR</text>
       <path class="sensor-line" d="M 240 142 L 240 200 L 350 200 L 350 240"/>
       <circle class="sensor-dot" cx="350" cy="240" r="4.5"/>
-    </g>
+    </a>
 
     <!-- TEMPERATURA CABINA (top-center -> window interior) -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Temperatura Cabina">
+    <a class="sensor-group" href="verSensor?id=temperaturaCabina" aria-label="Temperatura Cabina">
       <rect class="sensor-box" x="490" y="100" width="220" height="42" rx="4"/>
       <text class="sensor-label" x="600" y="126">TEMPERATURA CABINA</text>
       <path class="sensor-line" d="M 600 142 L 600 200 L 490 200 L 490 300"/>
       <circle class="sensor-dot" cx="490" cy="300" r="4.5"/>
-    </g>
+    </a>
 
     <!-- TEMPERATURA MOTOR (top-right -> motor area at front) -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Temperatura Motor">
+    <a class="sensor-group" href="verSensor?id=temperaturaMotor" aria-label="Temperatura Motor">
       <rect class="sensor-box" x="900" y="100" width="220" height="42" rx="4"/>
       <text class="sensor-label" x="1010" y="126">TEMPERATURA MOTOR</text>
       <path class="sensor-line" d="M 920 142 L 920 220 L 880 220 L 880 410"/>
       <circle class="sensor-dot" cx="880" cy="410" r="4.5"/>
-    </g>
+    </a>
 
     <!-- VELOCÍMETRO TRASERO (bottom-left -> back wheel) -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Velocímetro Trasero">
+    <a class="sensor-group" href="verSensor?id=velocimetroTrasero" aria-label="Velocímetro Trasero">
       <rect class="sensor-box" x="170" y="540" width="250" height="42" rx="4"/>
       <text class="sensor-label" x="295" y="566">VELOCÍMETRO TRASERO</text>
       <path class="sensor-line" d="M 360 540 L 360 480 L 370 460"/>
       <circle class="sensor-dot" cx="370" cy="450" r="4.5"/>
-    </g>
+    </a>
 
     <!-- VELOCÍMETRO DELANTERO (bottom-right -> front wheel) -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Velocímetro Delantero">
+    <a class="sensor-group" href="verSensor?id=velocimetroDelantero" aria-label="Velocímetro Delantero">
       <rect class="sensor-box" x="780" y="540" width="270" height="42" rx="4"/>
       <text class="sensor-label" x="915" y="566">VELOCÍMETRO DELANTERO</text>
       <path class="sensor-line" d="M 850 540 L 850 480 L 830 460"/>
       <circle class="sensor-dot" cx="830" cy="450" r="4.5"/>
-    </g>
+    </a>
 
   </svg>
 
@@ -380,46 +140,46 @@
     <!-- ============ SENSOR LABELS (6 independent buttons) ============ -->
 
     <!-- LEFT SIDE: RADAR IZQUIERDO -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Radar Izquierdo">
+    <a class="sensor-group" href="verSensor?id=radarIzquierdo" aria-label="Radar Izquierdo">
       <rect class="sensor-box" x="60" y="155" width="220" height="42" rx="4"/>
       <text class="sensor-label" x="170" y="181">RADAR IZQUIERDO</text>
       <path class="sensor-line" d="M 280 176 L 380 176 L 380 130 L 495 115"/>
-    </g>
+    </a>
 
     <!-- LEFT SIDE: LIDAR IZQUIERDO -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Lidar Izquierdo">
+    <a class="sensor-group" href="verSensor?id=lidarIzquierdo" aria-label="Lidar Izquierdo">
       <rect class="sensor-box" x="60" y="215" width="220" height="42" rx="4"/>
       <text class="sensor-label" x="170" y="241">LIDAR IZQUIERDO</text>
       <path class="sensor-line" d="M 280 236 L 360 236 L 360 145 L 495 115"/>
-    </g>
+    </a>
 
     <!-- CENTER: RADAR CENTRO -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Radar Centro">
+    <a class="sensor-group" href="verSensor?id=radarCentro" aria-label="Radar Centro">
       <rect class="sensor-box" x="380" y="25" width="200" height="42" rx="4"/>
       <text class="sensor-label" x="480" y="51">RADAR CENTRO</text>
       <path class="sensor-line" d="M 560 67 L 600 92"/>
-    </g>
+    </a>
 
     <!-- CENTER: LIDAR CENTRO -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Lidar Centro">
+    <a class="sensor-group" href="verSensor?id=lidarCentro" aria-label="Lidar Centro">
       <rect class="sensor-box" x="620" y="25" width="200" height="42" rx="4"/>
       <text class="sensor-label" x="720" y="51">LIDAR CENTRO</text>
       <path class="sensor-line" d="M 640 67 L 600 92"/>
-    </g>
+    </a>
 
     <!-- RIGHT SIDE: RADAR DERECHO -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Radar Derecho">
+    <a class="sensor-group" href="verSensor?id=radarDerecho" aria-label="Radar Derecho">
       <rect class="sensor-box" x="920" y="155" width="220" height="42" rx="4"/>
       <text class="sensor-label" x="1030" y="181">RADAR DERECHO</text>
       <path class="sensor-line" d="M 920 176 L 820 176 L 820 130 L 705 115"/>
-    </g>
+    </a>
 
     <!-- RIGHT SIDE: LIDAR DERECHO -->
-    <g class="sensor-group" tabindex="0" role="button" aria-label="Lidar Derecho">
+    <a class="sensor-group" href="verSensor?id=lidarDerecho" aria-label="Lidar Derecho">
       <rect class="sensor-box" x="920" y="215" width="220" height="42" rx="4"/>
       <text class="sensor-label" x="1030" y="241">LIDAR DERECHO</text>
       <path class="sensor-line" d="M 920 236 L 840 236 L 840 145 L 705 115"/>
-    </g>
+    </a>
 
     <!-- Direction indicator -->
     <text x="600" y="565" fill="var(--text-dim)" font-family="Chakra Petch, sans-serif" font-size="11" letter-spacing="3" text-anchor="middle" opacity="0.7">
@@ -430,10 +190,55 @@
 
 </div>
 
-<div class="bottom-buttons">
-  <button class="action-btn" id="btnGps">Velocidad GPS</button>
+<!-- Velocidad GPS (centrado) -->
+<div class="action-row">
+  <form action="gps" method="get">
+    <button type="submit" class="action-btn">Velocidad GPS</button>
+  </form>
+</div>
+
+<!-- ============ LISTA DE SENSORES ============ -->
+<div class="subsection-title-wrapper">
+  <div class="section-title">Lista de Sensores</div>
+</div>
+<div class="action-row">
   <form action="lista" method="get">
-    <button type="submit" class="action-btn">Lista de Todos los Sensores</button>
+    <button type="submit" class="action-btn">Ver Lista</button>
+  </form>
+  <form action="anadirSensor" method="get">
+    <button type="submit" class="action-btn">Añadir Sensor</button>
+  </form>
+  <form action="editarSensor" method="get">
+    <button type="submit" class="action-btn">Editar Sensor</button>
+  </form>
+  <form action="eliminarSensor" method="get">
+    <button type="submit" class="action-btn">Eliminar Sensor</button>
+  </form>
+</div>
+
+<!-- ============ DATOS DE SENSORES ============ -->
+<div class="subsection-title-wrapper">
+  <div class="section-title">Datos de Sensores</div>
+</div>
+<div class="action-row">
+  <form action="verDatos" method="get">
+    <button type="submit" class="action-btn">Ver Datos</button>
+  </form>
+  <form action="anadirRegistro" method="get">
+    <button type="submit" class="action-btn">Añadir Registro</button>
+  </form>
+  <form action="editarRegistro" method="get">
+    <button type="submit" class="action-btn">Editar Registro</button>
+  </form>
+  <form action="eliminarRegistro" method="get">
+    <button type="submit" class="action-btn">Eliminar Registro</button>
+  </form>
+</div>
+
+<!-- ============ COLISIÓN ============ -->
+<div class="action-row">
+  <form action="colision" method="get">
+    <button type="submit" class="action-btn colision-btn">Colisión</button>
   </form>
 </div>
 
@@ -457,12 +262,7 @@
     }
   });
 
-  // Placeholder for the GPS button - here later you can wire up the servlet
-  document.getElementById('btnGps').addEventListener('click', () => {
-    // TODO: llamar al servlet de velocidad GPS
-  });
-  // El botón "Lista de Todos los Sensores" usa un <form action="lista">,
-  // así que el navegador hace el GET al servlet directamente sin JS.
+  
 </script>
 
 </body>

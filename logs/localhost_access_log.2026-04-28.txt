@@ -13,3 +13,15 @@
 0:0:0:0:0:0:0:1 - - [28/Apr/2026:18:22:26 +0200] "GET /Proyecto/lista? HTTP/1.1" 200 4328
 0:0:0:0:0:0:0:1 - - [28/Apr/2026:18:22:28 +0200] "GET /Proyecto/lista? HTTP/1.1" 200 4328
 0:0:0:0:0:0:0:1 - - [28/Apr/2026:18:47:31 +0200] "GET /Proyecto/lista? HTTP/1.1" 200 4328
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:17:49 +0200] "GET /Proyecto/lista? HTTP/1.1" 200 4328
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:24:03 +0200] "GET /Proyecto/ HTTP/1.1" 200 17041
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:24:06 +0200] "GET /Proyecto/lista? HTTP/1.1" 200 4328
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:24:10 +0200] "GET /Proyecto/anadirSensor? HTTP/1.1" 404 712
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:24:12 +0200] "GET /Proyecto/gps? HTTP/1.1" 404 703
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:27:29 +0200] "GET /Proyecto/ HTTP/1.1" 200 17185
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:27:30 +0200] "GET /Proyecto/verSensor?id=temperaturaExterior HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:27:33 +0200] "GET /Proyecto/verSensor?id=radarCentro HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:27:36 +0200] "GET /Proyecto/lista? HTTP/1.1" 200 4328
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:29:34 +0200] "GET /Proyecto/ HTTP/1.1" 200 11482
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:29:34 +0200] "GET /Proyecto/styles.css HTTP/1.1" 200 5234
+0:0:0:0:0:0:0:1 - - [28/Apr/2026:19:29:35 +0200] "GET /Proyecto/verSensor?id=temperaturaExterior HTTP/1.1" 404 709
