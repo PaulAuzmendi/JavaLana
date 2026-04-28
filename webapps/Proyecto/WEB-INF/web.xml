@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+
+  <servlet>
+    <servlet-name>lista</servlet-name>
+    <servlet-class>ListaSensoresServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>lista</servlet-name>
+    <url-pattern>/lista</url-pattern>
+  </servlet-mapping>
+
+</web-app>

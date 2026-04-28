@@ -131,6 +131,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .bottom-buttons form { margin: 0; }
 
   .action-btn {
     background: rgba(77, 208, 225, 0.06);
@@ -431,7 +432,9 @@
 
 <div class="bottom-buttons">
   <button class="action-btn" id="btnGps">Velocidad GPS</button>
-  <button class="action-btn" id="btnLista">Lista de Todos los Sensores</button>
+  <form action="lista" method="get">
+    <button type="submit" class="action-btn">Lista de Todos los Sensores</button>
+  </form>
 </div>
 
 <script>
@@ -454,13 +457,12 @@
     }
   });
 
-  // Placeholders for the buttons - here later you can wire up the servlets
+  // Placeholder for the GPS button - here later you can wire up the servlet
   document.getElementById('btnGps').addEventListener('click', () => {
     // TODO: llamar al servlet de velocidad GPS
   });
-  document.getElementById('btnLista').addEventListener('click', () => {
-    // TODO: llamar al servlet con la lista de sensores
-  });
+  // El botón "Lista de Todos los Sensores" usa un <form action="lista">,
+  // así que el navegador hace el GET al servlet directamente sin JS.
 </script>
 
 </body>
