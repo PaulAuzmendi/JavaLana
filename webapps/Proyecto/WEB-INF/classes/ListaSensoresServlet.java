@@ -138,7 +138,7 @@ public class ListaSensoresServlet extends HttpServlet {
         out.println("</table>");
         out.println("<div class='footer'>");
         out.println("  <span class='total'>Total: <strong>" + sensores.length + "</strong> sensores</span>");
-        out.println("  <a class='back-btn' href='javascript:history.back()'>← Volver al Panel</a>");
+        out.println("  <a class='back-btn' href='javascript:history.back()'>Volver al Panel</a>");
         out.println("</div>");
         out.println("</div>");
         out.println("</body>");
