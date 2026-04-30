@@ -2,13 +2,13 @@
 <web-app>
 
   <servlet>
-    <servlet-name>lista</servlet-name>
-    <servlet-class>ListaSensoresServlet</servlet-class>
+    <servlet-name>Inicio</servlet-name>
+    <servlet-class>Inicio</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>lista</servlet-name>
-    <url-pattern>/lista</url-pattern>
+    <servlet-name>Inicio</servlet-name>
+    <url-pattern>/Inicio</url-pattern>
   </servlet-mapping>
 
 </web-app>
