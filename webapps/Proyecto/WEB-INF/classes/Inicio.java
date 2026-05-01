@@ -96,7 +96,11 @@ public class Inicio extends HttpServlet{
         out.println("  <form action='eliminarTren' method='get'>");
         out.println("    <button type='submit' class='action-btn'>Eliminar Tren</button>");
         out.println("  </form>");
+        out.println("  <form action='ordenarTren' method='get'>");
+        out.println("    <button type='submit' class='action-btn'>Reordenar lista</button>");
+        out.println("  </form>");
         out.println("</div>");
+
 
         out.println("</body>");
         out.println("</html>");

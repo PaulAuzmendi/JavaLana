@@ -205,7 +205,7 @@ h1 {
   border-color: #e14d60;
   color: #ff7686;
   letter-spacing: 3px;
-  padding: 16px 56px;
+  padding: 14px 30px;
   font-weight: 600;
 }
 .colision-btn:hover {
@@ -350,4 +350,118 @@ h1 {
 .sensor-group:focus .sensor-box {
   stroke: var(--accent-bright);
   stroke-width: 2;
+}
+
+/* ============ SENSORES COMO FORM (foreignObject) ============ */
+.sensor-form {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.sensor-btn {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  background: var(--label-bg);
+  border: 1.4px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.sensor-btn:hover {
+  background: rgba(77, 208, 225, 0.18);
+  border-color: var(--accent-bright);
+  border-width: 2px;
+  color: var(--accent-bright);
+  box-shadow: 0 0 8px rgba(125, 228, 237, 0.7);
+}
+.sensor-btn:focus {
+  outline: none;
+  border-color: var(--accent-bright);
+}
+
+/* ============ FORMULARIOS ============ */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 30px auto 10px;
+  padding: 35px 40px;
+  border: 1px solid var(--accent-dim);
+  border-radius: 3px;
+  background: rgba(10, 22, 40, 0.6);
+  box-shadow: 0 0 24px rgba(77, 208, 225, 0.08) inset;
+}
+ 
+.form-info {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(74, 93, 122, 0.3);
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+.form-info span {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+ 
+.form-field {
+  margin-bottom: 22px;
+}
+ 
+.form-field label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+ 
+.form-field input[type='text'],
+.form-field input[type='number'],
+.form-field input[type='datetime-local'] {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-darker);
+  border: 1px solid var(--train-stroke);
+  border-radius: 2px;
+  color: var(--text-light);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+ 
+.form-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(77, 208, 225, 0.3);
+}
+ 
+.binary-buttons {
+  display: flex;
+  gap: 14px;
+}
+ 
+.binary-buttons .action-btn {
+  flex: 1;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  padding: 22px;
+  font-weight: 600;
 }

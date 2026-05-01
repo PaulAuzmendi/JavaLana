@@ -11,4 +11,48 @@
     <url-pattern>/Inicio</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>verTren</servlet-name>
+    <servlet-class>verTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>verTren</servlet-name>
+    <url-pattern>/verTren</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>verSensor</servlet-name>
+    <servlet-class>verSensor</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>verSensor</servlet-name>
+    <url-pattern>/verSensor</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>anadirRegistro</servlet-name>
+    <servlet-class>anadirRegistro</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>anadirRegistro</servlet-name>
+    <url-pattern>/anadirRegistro</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>insertarRegistro</servlet-name>
+    <servlet-class>insertarRegistro</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>insertarRegistro</servlet-name>
+    <url-pattern>/insertarRegistro</url-pattern>
+  </servlet-mapping>
+
 </web-app>
