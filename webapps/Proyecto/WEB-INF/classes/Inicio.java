@@ -36,6 +36,8 @@ public class Inicio extends HttpServlet{
         out.println("<th>Fecha Creación</th>");
         out.println("<th>Fecha última Revisión</th>");
         out.println("<th class='col-acciones'></th>");
+        out.println("<th class='col-acciones'></th>");
+        out.println("<th class='col-acciones'></th>");
         out.println("</tr>");
         out.println("</thead>");
         out.println("<tbody>");
@@ -68,6 +70,18 @@ public class Inicio extends HttpServlet{
                 out.println("    <button type='submit' class='action-btn action-btn-sm'>Ver</button>");
                 out.println("  </form>");
                 out.println("</td>");
+                out.println("<td class='col-acciones'>");
+                out.println("  <form action='editarTren' method='get'>");
+                out.println("    <input type='hidden' name='id' value='" + idTren + "'>");
+                out.println("    <button type='submit' class='action-btn action-btn-sm'>Editar</button>");
+                out.println("  </form>");
+                out.println("</td>");
+                out.println("<td class='col-acciones'>");
+                out.println("  <form action='eliminarTren' method='get'>");
+                out.println("    <input type='hidden' name='id' value='" + idTren + "'>");
+                out.println("    <button type='submit' class='action-btn action-btn-sm'>Eliminar</button>");
+                out.println("  </form>");
+                out.println("</td>");
                 out.println("</tr>");
             }
 
@@ -89,12 +103,6 @@ public class Inicio extends HttpServlet{
         out.println("<div class='action-row'>");
         out.println("  <form action='anadirTren' method='get'>");
         out.println("    <button type='submit' class='action-btn'>Añadir Tren</button>");
-        out.println("  </form>");
-        out.println("  <form action='editarTren' method='get'>");
-        out.println("    <button type='submit' class='action-btn'>Editar Tren</button>");
-        out.println("  </form>");
-        out.println("  <form action='eliminarTren' method='get'>");
-        out.println("    <button type='submit' class='action-btn'>Eliminar Tren</button>");
         out.println("  </form>");
         out.println("  <form action='ordenarTren' method='get'>");
         out.println("    <button type='submit' class='action-btn'>Reordenar lista</button>");

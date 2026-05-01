@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app>
 
+<welcome-file-list>
+    <welcome-file>Inicio</welcome-file>
+</welcome-file-list>
+
+
   <servlet>
     <servlet-name>Inicio</servlet-name>
     <servlet-class>Inicio</servlet-class>
@@ -53,6 +58,17 @@
   <servlet-mapping>
     <servlet-name>insertarRegistro</servlet-name>
     <url-pattern>/insertarRegistro</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>verDatos</servlet-name>
+    <servlet-class>verDatos</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>verDatos</servlet-name>
+    <url-pattern>/verDatos</url-pattern>
   </servlet-mapping>
 
 </web-app>

@@ -3,23 +3,22 @@ import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-public class verSensor extends HttpServlet{
+public class verDatos extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
-        String idSensor = request.getParameter("id");
-        String idTren   = request.getParameter("idTren");
-        String nombreSensor = "";
+        String idTren = request.getParameter("id");
+        String modelo = "";
 
-        // ===== Consulta el nombre del sensor =====
+        // ===== Consulta el modelo del tren =====
         try {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("Select Nombre_Sensor from Sensores where ID_Sensor = " + idSensor);
+            ResultSet rs = stmt.executeQuery("Select Modelo from Trenes where ID_Tren = " + idTren);
             if (rs.next()) {
-                nombreSensor = rs.getString("Nombre_Sensor");
+                modelo = rs.getString("Modelo");
             }
             rs.close();
             stmt.close();
@@ -34,7 +33,7 @@ public class verSensor extends HttpServlet{
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
         out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-        out.println("<title>Datos del Sensor " + idSensor + "</title>");
+        out.println("<title>Todos los Datos - Tren " + idTren + "</title>");
         out.println("<link rel='preconnect' href='https://fonts.googleapis.com'>");
         out.println("<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>");
         out.println("<link href='https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap' rel='stylesheet'>");
@@ -44,8 +43,8 @@ public class verSensor extends HttpServlet{
 
         out.println("<header>");
         out.println("  <h1>Software de Gestión de Datos de Sensores para Trenes</h1>");
-        out.println("  <p class='subtitle'>TREN #" + idTren + " &middot; " + nombreSensor.toUpperCase() + "</p>");
-        out.println("  <div class='section-title'>Datos del Sensor " + idSensor + ": "+nombreSensor+" </div>");
+        out.println("  <p class='subtitle'>TREN #" + idTren + " &middot; " + modelo.toUpperCase() + "</p>");
+        out.println("  <div class='section-title'>Todos los Datos del Tren</div>");
         out.println("</header>");
 
         // ===== Tabla de datos =====
@@ -61,7 +60,6 @@ public class verSensor extends HttpServlet{
         out.println("<th>Valor</th>");
         out.println("<th>Unidad</th>");
         out.println("<th class='col-acciones'></th>");
-
         out.println("</tr>");
         out.println("</thead>");
         out.println("<tbody>");
@@ -71,8 +69,7 @@ public class verSensor extends HttpServlet{
             Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(
-                "Select * from DatosSensor where ID_Tren = " + idTren +
-                " and ID_Sensor = " + idSensor + " order by ID_Datos");
+                "Select * from DatosSensor where ID_Tren = " + idTren + " order by ID_Datos");
 
             while (rs.next()) {
                 String idDatos     = rs.getString("ID_Datos");
@@ -94,7 +91,7 @@ public class verSensor extends HttpServlet{
                 out.println("<td class='col-acciones'>");
                 out.println("  <form action='eliminarRegistro' method='get'>");
                 out.println("    <input type='hidden' name='idTren' value='" + idT + "'>");
-                out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
+                out.println("    <input type='hidden' name='idSensor' value='" + idS + "'>");
                 out.println("    <input type='hidden' name='idDatos' value='" + idDatos + "'>");
                 out.println("    <button type='submit' class='action-btn action-btn-sm'>Eliminar</button>");
                 out.println("  </form>");
@@ -113,28 +110,7 @@ public class verSensor extends HttpServlet{
         out.println("</table>");
         out.println("</div>");
 
-        // ===== Botones inferiores =====
-        out.println("<div class='action-row'>");
-
-        out.println("  <form action='anadirRegistro' method='get'>");
-        out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
-        out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
-        out.println("    <button type='submit' class='action-btn'>Añadir Registro</button>");
-        out.println("  </form>");
-
-        out.println("  <form action='reordenar' method='get'>");
-        out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
-        out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
-        out.println("    <button type='submit' class='action-btn'>Reordenar</button>");
-        out.println("  </form>");
-
-        out.println("  <form action='grafico' method='get'>");
-        out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
-        out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
-        out.println("    <button type='submit' class='action-btn'>Dibujar Gráfico</button>");
-        out.println("  </form>");
-
-        out.println("</div>");
+        // ===== Botón volver =====
         out.println("<div class='action-row'>");
         out.println("  <form action='verTren' method='get'>");
         out.println("    <input type='hidden' name='id' value='" + idTren + "'>");
