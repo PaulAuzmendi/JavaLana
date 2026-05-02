@@ -465,3 +465,15 @@ h1 {
   padding: 22px;
   font-weight: 600;
 }
+
+.grafico-container {
+  width: 100%;
+  max-width: 1400px;
+  height: 700px;
+  margin: 30px auto 10px;
+  padding: 20px;
+  border: 1px solid var(--accent-dim);
+  border-radius: 3px;
+  background: rgba(10, 22, 40, 0.6);
+  box-shadow: 0 0 24px rgba(77, 208, 225, 0.08) inset;
+}

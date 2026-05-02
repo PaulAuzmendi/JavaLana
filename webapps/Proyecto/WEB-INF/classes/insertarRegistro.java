@@ -59,6 +59,6 @@ public class insertarRegistro extends HttpServlet{
         }
 
         // Volver a la página del sensor
-        response.sendRedirect("verSensor?idTren=" + idTren + "&id=" + idSensor);
+        response.sendRedirect("verSensor?idTren=" + idTren + "&idSensor=" + idSensor);
     }
 }

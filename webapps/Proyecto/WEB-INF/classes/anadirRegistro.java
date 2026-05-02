@@ -125,7 +125,7 @@ public class anadirRegistro extends HttpServlet{
         out.println("<div class='action-row'>");
         out.println("  <form action='verSensor' method='get'>");
         out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
-        out.println("    <input type='hidden' name='id' value='" + idSensor + "'>");
+        out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
         out.println("    <button type='submit' class='action-btn'>Cancelar</button>");
         out.println("  </form>");
         out.println("</div>");

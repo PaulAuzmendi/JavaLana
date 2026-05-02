@@ -71,4 +71,37 @@
     <url-pattern>/verDatos</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>eliminarRegistro</servlet-name>
+    <servlet-class>eliminarRegistro</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>eliminarRegistro</servlet-name>
+    <url-pattern>/eliminarRegistro</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>ordenarRegistro</servlet-name>
+    <servlet-class>ordenarRegistro</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ordenarRegistro</servlet-name>
+    <url-pattern>/ordenarRegistro</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>grafico</servlet-name>
+    <servlet-class>grafico</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>grafico</servlet-name>
+    <url-pattern>/grafico</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

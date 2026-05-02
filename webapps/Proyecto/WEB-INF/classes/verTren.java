@@ -8,7 +8,7 @@ public class verTren extends HttpServlet{
         throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
-        String id = request.getParameter("id");
+        String id = request.getParameter("idTren");
         String modelo = "";
 
         // ===== Consulta el modelo del tren =====
@@ -77,7 +77,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='80' y='100' width='240' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='3'/>");
+        out.println("      <input type='hidden' name='idSensor' value='3'/>");
         out.println("      <button type='submit' class='sensor-btn'>TEMPERATURA EXTERIOR</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -88,7 +88,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='490' y='100' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='2'/>");
+        out.println("      <input type='hidden' name='idSensor' value='2'/>");
         out.println("      <button type='submit' class='sensor-btn'>TEMPERATURA CABINA</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -99,7 +99,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='900' y='100' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='1'/>");
+        out.println("      <input type='hidden' name='idSensor' value='1'/>");
         out.println("      <button type='submit' class='sensor-btn'>TEMPERATURA MOTOR</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -110,7 +110,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='170' y='540' width='250' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='11'/>");
+        out.println("      <input type='hidden' name='idSensor' value='11'/>");
         out.println("      <button type='submit' class='sensor-btn'>VELOCIMETRO TRASERO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -121,7 +121,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='780' y='540' width='270' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='10'/>");
+        out.println("      <input type='hidden' name='idSensor' value='10'/>");
         out.println("      <button type='submit' class='sensor-btn'>VELOCIMETRO DELANTERO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -162,7 +162,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='60' y='155' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='4'/>");
+        out.println("      <input type='hidden' name='idSensor' value='4'/>");
         out.println("      <button type='submit' class='sensor-btn'>RADAR IZQUIERDO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -172,7 +172,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='60' y='215' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='7'/>");
+        out.println("      <input type='hidden' name='idSensor' value='7'/>");
         out.println("      <button type='submit' class='sensor-btn'>LIDAR IZQUIERDO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -182,7 +182,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='380' y='25' width='200' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='5'/>");
+        out.println("      <input type='hidden' name='idSensor' value='5'/>");
         out.println("      <button type='submit' class='sensor-btn'>RADAR CENTRO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -192,7 +192,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='620' y='25' width='200' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='8'/>");
+        out.println("      <input type='hidden' name='idSensor' value='8'/>");
         out.println("      <button type='submit' class='sensor-btn'>LIDAR CENTRO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -202,7 +202,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='920' y='155' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='6'/>");
+        out.println("      <input type='hidden' name='idSensor' value='6'/>");
         out.println("      <button type='submit' class='sensor-btn'>RADAR DERECHO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -212,7 +212,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='920' y='215' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='9'/>");
+        out.println("      <input type='hidden' name='idSensor' value='9'/>");
         out.println("      <button type='submit' class='sensor-btn'>LIDAR DERECHO</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -223,7 +223,7 @@ public class verTren extends HttpServlet{
         out.println("  <foreignObject x='60' y='314' width='220' height='42'>");
         out.println("    <form xmlns='http://www.w3.org/1999/xhtml' action='verSensor' method='get' class='sensor-form'>");
         out.println("      <input type='hidden' name='idTren' value='" + id + "'/>");
-        out.println("      <input type='hidden' name='id' value='12'/>");
+        out.println("      <input type='hidden' name='idSensor' value='12'/>");
         out.println("      <button type='submit' class='sensor-btn'>VELOCIMETRO GPS</button>");
         out.println("    </form>");
         out.println("  </foreignObject>");
@@ -234,11 +234,11 @@ public class verTren extends HttpServlet{
         // ===== Botones inferiores: Ver Datos y Colisión =====
         out.println("<div class='action-row'>");
         out.println("  <form action='verDatos' method='get'>");
-        out.println("    <input type='hidden' name='id' value='" + id + "'>");
+        out.println("    <input type='hidden' name='idTren' value='" + id + "'>");
         out.println("    <button type='submit' class='action-btn'>Ver Todos los Datos</button>");
         out.println("  </form>");
         out.println("  <form action='colision' method='get'>");
-        out.println("    <input type='hidden' name='id' value='" + id + "'>");
+        out.println("    <input type='hidden' name='idTren' value='" + id + "'>");
         out.println("    <button type='submit' class='action-btn colision-btn'>Colisión</button>");
         out.println("  </form>");
         out.println("</div>");
@@ -286,7 +286,7 @@ public class verTren extends HttpServlet{
                 out.println("<td class='col-acciones'>");
                 out.println("  <form action='verSensor' method='get'>");
                 out.println("    <input type='hidden' name='idTren' value='" + id + "'>");
-                out.println("    <input type='hidden' name='id' value='" + idSensor + "'>");
+                out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
                 out.println("    <button type='submit' class='action-btn action-btn-sm'>Ver Datos</button>");
                 out.println("  </form>");
                 out.println("</td>");

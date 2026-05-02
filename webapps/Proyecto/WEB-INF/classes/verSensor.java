@@ -8,7 +8,7 @@ public class verSensor extends HttpServlet{
         throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
-        String idSensor = request.getParameter("id");
+        String idSensor = request.getParameter("idSensor");
         String idTren   = request.getParameter("idTren");
         String nombreSensor = "";
 
@@ -80,17 +80,23 @@ public class verSensor extends HttpServlet{
             // Step 4
             Connection connection = DriverManager.getConnection(url);
             Statement stmt = connection.createStatement();
+            String orden = request.getParameter("orden");
+            if (orden == null) orden = "ID_Datos";
             ResultSet rs = stmt.executeQuery(
                 "Select * from DatosSensor where ID_Tren = " + idTren +
-                " and ID_Sensor = " + idSensor + " order by ID_Datos");
+                " and ID_Sensor = " + idSensor + " order by " + orden);
+            java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
             while (rs.next()) {
                 String idDatos     = rs.getString("ID_Datos");
                 String idT         = rs.getString("ID_Tren");
                 String idS         = rs.getString("ID_Sensor");
-                String fechaHora   = rs.getString("FechaHora");
+                java.sql.Timestamp ts = rs.getTimestamp("FechaHora");
+                String fechaHora   = fmt.format(ts);
                 String localizacion= rs.getString("Localizacion");
-                String valor       = rs.getString("Dato_valor");
+                double valorNum    = rs.getDouble("Dato_valor");
+                String valor = String.format(java.util.Locale.US, "%.2f", valorNum);
                 String unidad      = rs.getString("Unidad_medida");
 
                 out.println("<tr>");
@@ -106,6 +112,7 @@ public class verSensor extends HttpServlet{
                 out.println("    <input type='hidden' name='idTren' value='" + idT + "'>");
                 out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
                 out.println("    <input type='hidden' name='idDatos' value='" + idDatos + "'>");
+                out.println("    <input type='hidden' name='origen' value='verSensor'>");  
                 out.println("    <button type='submit' class='action-btn action-btn-sm'>Eliminar</button>");
                 out.println("  </form>");
                 out.println("</td>");
@@ -132,9 +139,11 @@ public class verSensor extends HttpServlet{
         out.println("    <button type='submit' class='action-btn'>Añadir Registro</button>");
         out.println("  </form>");
 
-        out.println("  <form action='reordenar' method='get'>");
+        out.println("  <form action='ordenarRegistro' method='get'>");
         out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
         out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
+		out.println("    <input type='hidden' name='origen' value='verSensor'>");  
+
         out.println("    <button type='submit' class='action-btn'>Reordenar</button>");
         out.println("  </form>");
 
@@ -147,7 +156,7 @@ public class verSensor extends HttpServlet{
         out.println("</div>");
         out.println("<div class='action-row'>");
         out.println("  <form action='verTren' method='get'>");
-        out.println("    <input type='hidden' name='id' value='" + idTren + "'>");
+        out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
         out.println("    <button type='submit' class='action-btn'>Volver</button>");
         out.println("  </form>");
         out.println("</div>");
