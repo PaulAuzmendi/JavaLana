@@ -19,8 +19,13 @@ public class insertarRegistro extends HttpServlet{
         String fechaAccess = "#" + fechaHora.replace("T", " ") + ":00#";
 
         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+            String rutaRelativa = "/Trenes2.accdb"; 
+            String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
+            String url = "jdbc:ucanaccess://" + rutaAbsoluta;
+            // Step 4
+            Connection connection = DriverManager.getConnection(url);
 
             // ===== DIAGNOSTICO =====
             System.out.println("==========================================");

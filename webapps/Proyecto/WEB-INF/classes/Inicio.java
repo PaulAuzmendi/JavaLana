@@ -44,9 +44,13 @@ public class Inicio extends HttpServlet{
 
         try {
             // Step 3
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+            String rutaRelativa = "/Trenes2.accdb"; 
+            String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
+            String url = "jdbc:ucanaccess://" + rutaAbsoluta;
             // Step 4
-            Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
+            Connection connection = DriverManager.getConnection(url);
             // Step 5
             Statement stmt = connection.createStatement();
             // Step 6
@@ -56,8 +60,8 @@ public class Inicio extends HttpServlet{
             while (rs.next()) {
                 String idTren        = rs.getString("ID_Tren");
                 String modelo        = rs.getString("Modelo");
-                String fechaCreacion = rs.getString("Fecha_Creacion");
-                String fechaRevision = rs.getString("Fecha_Ultima_Revision");
+                String fechaCreacion = rs.getDate("Fecha_Creacion").toString();
+                String fechaRevision = rs.getDate("Fecha_Ultima_Revision").toString();
 
                 out.println("<tr>");
                 out.println("<td class='col-id'>" + idTren + "</td>");

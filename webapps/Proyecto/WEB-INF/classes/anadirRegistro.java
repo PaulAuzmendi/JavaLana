@@ -18,8 +18,13 @@ public class anadirRegistro extends HttpServlet{
 
         // ===== Consulta info del sensor y los valores por defecto =====
         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+            String rutaRelativa = "/Trenes2.accdb"; 
+            String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
+            String url = "jdbc:ucanaccess://" + rutaAbsoluta;
+            // Step 4
+            Connection connection = DriverManager.getConnection(url);
             Statement stmt = connection.createStatement();
 
             // Nombre y tipo del sensor

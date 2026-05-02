@@ -13,8 +13,13 @@ public class verDatos extends HttpServlet{
 
         // ===== Consulta el modelo del tren =====
         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+            String rutaRelativa = "/Trenes2.accdb"; 
+            String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
+            String url = "jdbc:ucanaccess://" + rutaAbsoluta;
+            // Step 4
+            Connection connection = DriverManager.getConnection(url);
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("Select Modelo from Trenes where ID_Tren = " + idTren);
             if (rs.next()) {
@@ -65,8 +70,13 @@ public class verDatos extends HttpServlet{
         out.println("<tbody>");
 
         try {
-            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            Connection connection = DriverManager.getConnection("jdbc:odbc:Trenes2");
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+            String rutaRelativa = "/Trenes2.accdb"; 
+            String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
+            String url = "jdbc:ucanaccess://" + rutaAbsoluta;
+            // Step 4
+            Connection connection = DriverManager.getConnection(url);
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(
                 "Select * from DatosSensor where ID_Tren = " + idTren + " order by ID_Datos");
