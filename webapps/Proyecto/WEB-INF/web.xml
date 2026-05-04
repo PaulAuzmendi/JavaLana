@@ -103,5 +103,52 @@
     <servlet-name>grafico</servlet-name>
     <url-pattern>/grafico</url-pattern>
   </servlet-mapping>
+      
+  <servlet>
+    <servlet-name>lista</servlet-name>
+    <servlet-class>lista</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>lista</servlet-name>
+    <url-pattern>/lista</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>anadirRegistro</servlet-name>
+    <servlet-class>anadirRegistro</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>anadirRegistro</servlet-name>
+    <url-pattern>/anadirRegistro</url-pattern>
+</servlet-mapping>
+
+    <servlet>
+    <servlet-name>editarRegistro</servlet-name>
+    <servlet-class>editarRegistro</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>editarRegistro</servlet-name>
+    <url-pattern>/editarRegistro</url-pattern>
+</servlet-mapping>
+
+    <servlet>
+    <servlet-name>ordenarRegistro</servlet-name>
+    <servlet-class>ordenarRegistro</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ordenarRegistro</servlet-name>
+    <url-pattern>/ordenarRegistro</url-pattern>
+</servlet-mapping>
+
+    <servlet>
+    <servlet-name>colision</servlet-name>
+    <servlet-class>colision</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>colision</servlet-name>
+    <url-pattern>/colision</url-pattern>
+</servlet-mapping>
+    
   
 </web-app>
