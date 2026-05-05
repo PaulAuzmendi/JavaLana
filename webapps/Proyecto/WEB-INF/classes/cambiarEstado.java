@@ -25,8 +25,7 @@ public class cambiarEstado extends HttpServlet {
             Connection connection = DriverManager.getConnection(url);
 
             
-			String sql = "UPDATE Sensores SET Estado_tren_" + idTren
-					   + " = '" + nuevoEstado + "' WHERE ID_Sensor = " + idSensor;
+			String sql = "UPDATE Sensores SET Estado = '" + nuevoEstado + "' WHERE ID_Sensor = " + idSensor;
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 

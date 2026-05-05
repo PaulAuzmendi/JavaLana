@@ -477,3 +477,73 @@ h1 {
   background: rgba(10, 22, 40, 0.6);
   box-shadow: 0 0 24px rgba(77, 208, 225, 0.08) inset;
 }
+
+/* ============ VISTA DE COLISIÓN ============ */
+
+/* Caja de sensor estática (no clicable) */
+.sensor-static {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--label-bg);
+  border: 1.4px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Estado de alerta: caja en rojo */
+.sensor-static.alert {
+  background: rgba(225, 77, 96, 0.18);
+  border-color: #ff7686;
+  border-width: 2px;
+  color: #ff7686;
+  box-shadow: 0 0 14px rgba(225, 77, 96, 0.45);
+  animation: alertPulse 1.4s ease-in-out infinite;
+}
+
+/* Línea conectora también en rojo cuando hay alerta */
+.sensor-line.alert {
+  stroke: #ff7686;
+  opacity: 1;
+  stroke-width: 1.6;
+}
+
+@keyframes alertPulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(225, 77, 96, 0.45); }
+  50%      { box-shadow: 0 0 26px rgba(225, 77, 96, 0.75); }
+}
+
+/* Banner superior de estado */
+.colision-status {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 14px 20px;
+  margin: 0 auto 20px;
+  border-radius: 3px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.colision-status.ok {
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  background: rgba(77, 208, 225, 0.06);
+}
+.colision-status.alert {
+  border: 1px solid #ff7686;
+  color: #ff7686;
+  background: rgba(225, 77, 96, 0.12);
+  animation: alertPulse 1.4s ease-in-out infinite;
+}

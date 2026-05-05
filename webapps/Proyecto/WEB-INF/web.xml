@@ -104,7 +104,8 @@
     <url-pattern>/grafico</url-pattern>
   </servlet-mapping>
 
-    <servlet>
+
+   <servlet>
     <servlet-name>cambiarEstado</servlet-name>
     <servlet-class>cambiarEstado</servlet-class>
   </servlet>
@@ -113,5 +114,83 @@
     <servlet-name>cambiarEstado</servlet-name>
     <url-pattern>/cambiarEstado</url-pattern>
   </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>anadirTren</servlet-name>
+    <servlet-class>anadirTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>anadirTren</servlet-name>
+    <url-pattern>/anadirTren</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>colision</servlet-name>
+    <servlet-class>colision</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>colision</servlet-name>
+    <url-pattern>/colision</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>editarTren</servlet-name>
+    <servlet-class>editarTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>editarTren</servlet-name>
+    <url-pattern>/editarTren</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>insertarTren</servlet-name>
+    <servlet-class>insertarTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>insertarTren</servlet-name>
+    <url-pattern>/insertarTren</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>eliminarTren</servlet-name>
+    <servlet-class>eliminarTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>eliminarTren</servlet-name>
+    <url-pattern>/eliminarTren</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>actualizarTren</servlet-name>
+    <servlet-class>actualizarTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>actualizarTren</servlet-name>
+    <url-pattern>/actualizarTren</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>ordenarTren</servlet-name>
+    <servlet-class>ordenarTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ordenarTren</servlet-name>
+    <url-pattern>/ordenarTren</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

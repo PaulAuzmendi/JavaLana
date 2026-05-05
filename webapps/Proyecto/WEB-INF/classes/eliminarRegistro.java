@@ -33,7 +33,7 @@ public class eliminarRegistro extends HttpServlet{
 
         // Volver a la página correspondiente
         if (origen.equals("verDatos")) {
-            response.sendRedirect("verDatos?id=" + idTren);
+            response.sendRedirect("verDatos?idTren=" + idTren);
         } else {
             response.sendRedirect("verSensor?idTren=" + idTren + "&idSensor=" + idSensor);
         }

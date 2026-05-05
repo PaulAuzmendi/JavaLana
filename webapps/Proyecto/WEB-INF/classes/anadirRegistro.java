@@ -3,9 +3,7 @@ import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-public class anadirRegistro extends HttpServlet {
-
-    /** GET → muestra el formulario de alta */
+public class anadirRegistro extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
@@ -13,26 +11,39 @@ public class anadirRegistro extends HttpServlet {
         String idTren   = request.getParameter("idTren");
         String idSensor = request.getParameter("idSensor");
 
-        String modelo       = "";
         String nombreSensor = "";
+        String tipoSensor   = "";
+        String localizacion = "";
+        String unidad       = "";
 
+        // ===== Consulta info del sensor y los valores por defecto =====
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String rutaAbsoluta = getServletContext().getRealPath("/Trenes2.accdb");
+
+            String rutaRelativa = "/Trenes2.accdb"; 
+            String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
             String url = "jdbc:ucanaccess://" + rutaAbsoluta;
+            // Step 4
             Connection connection = DriverManager.getConnection(url);
             Statement stmt = connection.createStatement();
 
-            if (idTren != null) {
-                ResultSet rsT = stmt.executeQuery("SELECT Modelo FROM Trenes WHERE ID_Tren = " + idTren);
-                if (rsT.next()) modelo = rsT.getString("Modelo");
-                rsT.close();
+            // Nombre y tipo del sensor
+            String sql1 = "Select * from Sensores where ID_Sensor = " + idSensor;
+            ResultSet rs = stmt.executeQuery(sql1);
+            if (rs.next()) {
+                nombreSensor = rs.getString("Nombre_Sensor");
+                tipoSensor   = rs.getString("Tipo_Sensor");
             }
-            if (idSensor != null) {
-                ResultSet rsS = stmt.executeQuery("SELECT Nombre_Sensor FROM Sensores WHERE ID_Sensor = " + idSensor);
-                if (rsS.next()) nombreSensor = rsS.getString("Nombre_Sensor");
-                rsS.close();
+            rs.close();
+
+            // Localizacion y Unidad por defecto: las del último registro de ese sensor
+            String sql2 = "Select * from DatosSensor where ID_Sensor = " + idSensor;
+            ResultSet rs2 = stmt.executeQuery(sql2);
+            if (rs2.next()) {
+                localizacion = rs2.getString("Localizacion");
+                unidad       = rs2.getString("Unidad_medida");
             }
+            rs2.close();
 
             stmt.close();
             connection.close();
@@ -40,92 +51,15 @@ public class anadirRegistro extends HttpServlet {
             throw new ServletException(e);
         }
 
-        printForm(out, idTren, idSensor, modelo, nombreSensor, null, null);
-    }
+        boolean esBinario = tipoSensor.equalsIgnoreCase("Lidar") || tipoSensor.equalsIgnoreCase("Radar");
 
-    /** POST → inserta el nuevo registro */
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-
-        PrintWriter out = response.getWriter();
-        String idTren       = request.getParameter("idTren");
-        String idSensor     = request.getParameter("idSensor");
-        String localizacion = request.getParameter("localizacion");
-        String valorStr     = request.getParameter("valor");
-        String unidad       = request.getParameter("unidad");
-        String fecha        = request.getParameter("fecha"); // "yyyy-MM-dd HH:mm:ss"
-
-        String modelo       = "";
-        String nombreSensor = "";
-
-        try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String rutaAbsoluta = getServletContext().getRealPath("/Trenes2.accdb");
-            String url = "jdbc:ucanaccess://" + rutaAbsoluta;
-            Connection connection = DriverManager.getConnection(url);
-            Statement stmtNombre = connection.createStatement();
-
-            ResultSet rsT = stmtNombre.executeQuery("SELECT Modelo FROM Trenes WHERE ID_Tren = " + idTren);
-            if (rsT.next()) modelo = rsT.getString("Modelo");
-            rsT.close();
-            ResultSet rsS = stmtNombre.executeQuery("SELECT Nombre_Sensor FROM Sensores WHERE ID_Sensor = " + idSensor);
-            if (rsS.next()) nombreSensor = rsS.getString("Nombre_Sensor");
-            rsS.close();
-            stmtNombre.close();
-
-            // Generar nuevo ID_Datos
-            Statement stmtMax = connection.createStatement();
-            ResultSet rsMax = stmtMax.executeQuery("SELECT MAX(ID_Datos) AS MaxID FROM DatosSensor");
-            int nuevoId = 1;
-            if (rsMax.next()) nuevoId = rsMax.getInt("MaxID") + 1;
-            rsMax.close();
-            stmtMax.close();
-
-            // Parsear fecha y valor
-            Timestamp ts;
-            try {
-                java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                ts = new Timestamp(fmt.parse(fecha).getTime());
-            } catch (Exception ex) {
-                ts = new Timestamp(System.currentTimeMillis());
-            }
-            double valor = Double.parseDouble(valorStr.replace(",", "."));
-
-            // Insertar
-            String sql = "INSERT INTO DatosSensor (ID_Datos, ID_Tren, ID_Sensor, FechaHora, Localizacion, Dato_valor, Unidad_medida) " +
-                         "VALUES (" + nuevoId + ", " + idTren + ", " + idSensor + ", #" +
-                         new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(ts) +
-                         "#, '" + localizacion + "', " +
-                         String.format(java.util.Locale.US, "%.4f", valor) + ", '" + unidad + "')";
-
-            Statement stmtIns = connection.createStatement();
-            stmtIns.executeUpdate(sql);
-            stmtIns.close();
-            connection.close();
-
-            printForm(out, idTren, idSensor, modelo, nombreSensor,
-                      null, "Registro #" + nuevoId + " añadido correctamente.");
-
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
-    }
-
-    // ──────────────────────────────────────────────────────────────
-
-    private void printForm(PrintWriter out, String idTren, String idSensor,
-            String modelo, String nombreSensor, String error, String success) {
-
-        // Fecha/hora actual por defecto en el campo
-        String ahora = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                .format(new java.util.Date());
-
+        // ===== HTML =====
         out.println("<!DOCTYPE html>");
         out.println("<html lang='es'>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
         out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-        out.println("<title>Añadir Registro</title>");
+        out.println("<title>Añadir Registro - " + nombreSensor + "</title>");
         out.println("<link rel='preconnect' href='https://fonts.googleapis.com'>");
         out.println("<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>");
         out.println("<link href='https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap' rel='stylesheet'>");
@@ -135,58 +69,64 @@ public class anadirRegistro extends HttpServlet {
 
         out.println("<header>");
         out.println("  <h1>Software de Gestión de Datos de Sensores para Trenes</h1>");
-        out.println("  <p class='subtitle'>TREN #" + idTren + " &middot; " + modelo.toUpperCase() + "</p>");
-        out.println("  <div class='section-title'>Añadir Registro &mdash; " + nombreSensor.toUpperCase() + "</div>");
+        out.println("  <p class='subtitle'>TREN #" + idTren + " &middot; " + nombreSensor.toUpperCase() + "</p>");
+        out.println("  <div class='section-title'>Añadir Registro</div>");
         out.println("</header>");
 
-        if (error != null) {
-            out.println("<div class='action-row'>");
-            out.println("  <p style='color:#ff8080;letter-spacing:1px;font-family:Chakra Petch,sans-serif'>" + error + "</p>");
-            out.println("</div>");
-        }
-        if (success != null) {
-            out.println("<div class='action-row'>");
-            out.println("  <p style='color:#4dd0e1;letter-spacing:1px;font-family:Chakra Petch,sans-serif'>" + success + "</p>");
-            out.println("</div>");
-        }
+        // ===== Formulario =====
+        out.println("<div class='form-container'>");
+        out.println("  <form action='insertarRegistro' method='get'>");
 
-        out.println("<div class='form-wrapper'>");
-        out.println("  <form action='anadirRegistro' method='post'>");
+        // Hidden: los datos automáticos
         out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
         out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
+        out.println("    <input type='hidden' name='localizacion' value='" + localizacion + "'>");
+        out.println("    <input type='hidden' name='unidad' value='" + unidad + "'>");
 
-        out.println("    <div class='form-group'>");
-        out.println("      <label for='fecha'>Fecha y Hora (yyyy-MM-dd HH:mm:ss)</label>");
-        out.println("      <input type='text' id='fecha' name='fecha' value='" + ahora + "' required>");
+        // Info de los campos automáticos para que el usuario los vea
+        out.println("    <div class='form-info'>");
+        out.println("      <div>ID Tren: <span>" + idTren + "</span></div>");
+        out.println("      <div>ID Sensor: <span>" + idSensor + "</span></div>");
+        out.println("      <div>Localización: <span>" + localizacion + "</span></div>");
+        out.println("      <div>Unidad de medida: <span>" + unidad + "</span></div>");
         out.println("    </div>");
 
-        out.println("    <div class='form-group'>");
-        out.println("      <label for='localizacion'>Localización</label>");
-        out.println("      <input type='text' id='localizacion' name='localizacion' placeholder='Ej: Motor' required>");
+        // Fecha y hora
+        out.println("    <div class='form-field'>");
+        out.println("      <label>Fecha y Hora</label>");
+        out.println("      <input type='datetime-local' name='fechaHora' required>");
         out.println("    </div>");
 
-        out.println("    <div class='form-group'>");
-        out.println("      <label for='valor'>Valor</label>");
-        out.println("      <input type='text' id='valor' name='valor' placeholder='Ej: 42.5' required>");
-        out.println("    </div>");
+        // Valor
+        out.println("    <div class='form-field'>");
+        out.println("      <label>Valor</label>");
 
-        out.println("    <div class='form-group'>");
-        out.println("      <label for='unidad'>Unidad de medida</label>");
-        out.println("      <input type='text' id='unidad' name='unidad' placeholder='Ej: Celsius, km/h, bool' required>");
-        out.println("    </div>");
-
-        out.println("    <div class='action-row'>");
-        out.println("      <button type='submit' class='action-btn'>Guardar Registro</button>");
-        out.println("    </div>");
+        if (esBinario) {
+            // Sensor Lidar/Radar -> dos botones 0 y 1
+            out.println("      <div class='binary-buttons'>");
+            out.println("        <button type='submit' name='valor' value='0' class='action-btn'>0</button>");
+            out.println("        <button type='submit' name='valor' value='1' class='action-btn'>1</button>");
+            out.println("      </div>");
+            out.println("    </div>");
+        } else {
+            // Sensor normal -> caja de texto numérica
+            out.println("      <input type='number' step='0.0001' name='valor' required>");
+            out.println("    </div>");
+            // Botón submit normal
+            out.println("    <div class='action-row' style='margin-top:10px;'>");
+            out.println("      <button type='submit' class='action-btn'>Añadir Registro</button>");
+            out.println("    </div>");
+        }
 
         out.println("  </form>");
         out.println("</div>");
 
+        // ===== Botón volver =====
         out.println("<div class='action-row'>");
         out.println("  <form action='verSensor' method='get'>");
         out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
         out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
-        out.println("    <button type='submit' class='action-btn'>Volver al Sensor</button>");
+        out.println("    <button type='submit' class='action-btn'>Cancelar</button>");
         out.println("  </form>");
         out.println("</div>");
 

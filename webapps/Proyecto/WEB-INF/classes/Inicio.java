@@ -54,8 +54,9 @@ public class Inicio extends HttpServlet{
             // Step 5
             Statement stmt = connection.createStatement();
             // Step 6
-            ResultSet rs = stmt.executeQuery("Select * from Trenes");
-
+           String orden = request.getParameter("orden");
+            if (orden == null) orden = "ID_Tren";
+            ResultSet rs = stmt.executeQuery("Select * from Trenes order by " + orden);
             // Step 7
             while (rs.next()) {
                 String idTren        = rs.getString("ID_Tren");

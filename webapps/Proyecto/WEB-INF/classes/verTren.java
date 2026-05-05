@@ -278,7 +278,7 @@ public class verTren extends HttpServlet{
                 String idSensor = rs2.getString("ID_Sensor");
                 String nombre   = rs2.getString("Nombre_Sensor");
                 String tipo     = rs2.getString("Tipo_Sensor");
-                String estado   = rs2.getString("Estado_tren_"+id);
+                String estado   = rs2.getString("Estado");
 
                 out.println("<tr>");
                 out.println("<td class='col-id'>" + idSensor + "</td>");
