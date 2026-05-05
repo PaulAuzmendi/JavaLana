@@ -257,6 +257,8 @@ public class verTren extends HttpServlet{
         out.println("<th>Tipo</th>");
         out.println("<th>Estado</th>");
         out.println("<th class='col-acciones'></th>");
+		out.println("<th class='col-acciones'></th>");
+
         out.println("</tr>");
         out.println("</thead>");
         out.println("<tbody>");
@@ -276,13 +278,21 @@ public class verTren extends HttpServlet{
                 String idSensor = rs2.getString("ID_Sensor");
                 String nombre   = rs2.getString("Nombre_Sensor");
                 String tipo     = rs2.getString("Tipo_Sensor");
-                String estado   = rs2.getString("Estado");
+                String estado   = rs2.getString("Estado_tren_"+id);
 
                 out.println("<tr>");
                 out.println("<td class='col-id'>" + idSensor + "</td>");
                 out.println("<td>" + nombre + "</td>");
                 out.println("<td>" + tipo + "</td>");
                 out.println("<td>" + estado + "</td>");
+				out.println("<td class='col-acciones'>");
+                out.println("  <form action='cambiarEstado' method='get'>");
+                out.println("    <input type='hidden' name='idTren' value='" + id + "'>");
+                out.println("    <input type='hidden' name='idSensor' value='" + idSensor + "'>");
+				out.println("    <input type='hidden' name='estado' value='"+estado+"'>");
+                out.println("    <button type='submit' class='action-btn action-btn-sm'>Des/Activar</button>");
+                out.println("  </form>");
+                out.println("</td>");
                 out.println("<td class='col-acciones'>");
                 out.println("  <form action='verSensor' method='get'>");
                 out.println("    <input type='hidden' name='idTren' value='" + id + "'>");
