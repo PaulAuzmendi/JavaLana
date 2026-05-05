@@ -103,5 +103,15 @@
     <servlet-name>grafico</servlet-name>
     <url-pattern>/grafico</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+    <servlet-name>cambiarEstado</servlet-name>
+    <servlet-class>cambiarEstado</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>cambiarEstado</servlet-name>
+    <url-pattern>/cambiarEstado</url-pattern>
+  </servlet-mapping>
   
 </web-app>
