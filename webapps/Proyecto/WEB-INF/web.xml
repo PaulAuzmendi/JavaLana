@@ -123,6 +123,17 @@
     <servlet-name>editarTren</servlet-name>
     <url-pattern>/editarTren</url-pattern>
   </servlet-mapping>
+
+      
+ <servlet>
+    <servlet-name>colision</servlet-name>
+    <servlet-class>colision</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>colision</servlet-name>
+    <url-pattern>/colision</url-pattern>
+  </servlet-mapping>
   
 
     
