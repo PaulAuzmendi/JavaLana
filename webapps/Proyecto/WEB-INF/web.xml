@@ -103,5 +103,27 @@
     <servlet-name>grafico</servlet-name>
     <url-pattern>/grafico</url-pattern>
   </servlet-mapping>
+
+ <servlet>
+    <servlet-name>anadirTren</servlet-name>
+    <servlet-class>anadirTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>anadirTren</servlet-name>
+    <url-pattern>/anadirTren</url-pattern>
+  </servlet-mapping>
   
+ <servlet>
+    <servlet-name>editarTren</servlet-name>
+    <servlet-class>editarTren</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>editarTren</servlet-name>
+    <url-pattern>/editarTren</url-pattern>
+  </servlet-mapping>
+  
+
+    
 </web-app>
