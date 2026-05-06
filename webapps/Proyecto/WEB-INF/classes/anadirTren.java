@@ -44,7 +44,7 @@ public class anadirTren extends HttpServlet{ //This part always the same
     
             // Fecha Ultima Revision
             out.println("    <div class='form-field'>");
-            out.println("      <label>Fecha Última Revisión</label>");
+            out.println("      <label>Fecha última Revisión</label>");
             out.println("      <input type='date' name='fechaRevision' required>");
             out.println("    </div>");
     
