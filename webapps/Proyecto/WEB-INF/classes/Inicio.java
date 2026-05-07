@@ -7,8 +7,8 @@ public class Inicio extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-        PrintWriter out = response.getWriter();
-
+        PrintWriter out = response.getWriter(); //Alwais same yez
+        
         out.println("<!DOCTYPE html>");
         out.println("<html lang='es'>");
         out.println("<head>");
@@ -49,30 +49,34 @@ public class Inicio extends HttpServlet{
             String rutaRelativa = "/Trenes2.accdb"; 
             String rutaAbsoluta = getServletContext().getRealPath(rutaRelativa);
             String url = "jdbc:ucanaccess://" + rutaAbsoluta;
-            // Step 4
             Connection connection = DriverManager.getConnection(url);
-            // Step 5
+            
+            //
             Statement stmt = connection.createStatement();
-            // Step 6
-           String orden = request.getParameter("orden");
+            
+            // Chekea el orden y asigna ID si no hay ninguno
+            String orden = request.getParameter("orden");
             if (orden == null) orden = "ID_Tren";
-            ResultSet rs = stmt.executeQuery("Select * from Trenes order by " + orden);
-            // Step 7
-            while (rs.next()) {
+            
+            ResultSet rs = stmt.executeQuery("Select * from Trenes order by " + orden); //For ordenar.trenes
+
+            
+            // 
+            while (rs.next())  //para cada fila 
                 String idTren        = rs.getString("ID_Tren");
                 String modelo        = rs.getString("Modelo");
-                String fechaCreacion = rs.getDate("Fecha_Creacion").toString();
+                String fechaCreacion = rs.getDate("Fecha_Creacion").toString(); //.toString para que se pueda leer el formato
                 String fechaRevision = rs.getDate("Fecha_Ultima_Revision").toString();
 
-                out.println("<tr>");
+                out.println("<tr>"); //Table Row y <td> Table data
                 out.println("<td class='col-id'>" + idTren + "</td>");
-                out.println("<td>" + modelo + "</td>");
+                out.println("<td>" + modelo + "</td>"); 
                 out.println("<td>" + fechaCreacion + "</td>");
                 out.println("<td>" + fechaRevision + "</td>");
                 out.println("<td class='col-acciones'>");
-                out.println("  <form action='verTren' method='get'>");
-                out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>");
-                out.println("    <button type='submit' class='action-btn action-btn-sm'>Ver</button>");
+                out.println("  <form action='verTren' method='get'>"); //boton con el metoodo get dirigido a verTren
+                out.println("    <input type='hidden' name='idTren' value='" + idTren + "'>"); //envia el dato 
+                out.println("    <button type='submit' class='action-btn action-btn-sm'>Ver</button>"); //submit pa ejecutar accion 
                 out.println("  </form>");
                 out.println("</td>");
                 out.println("<td class='col-acciones'>");
@@ -96,7 +100,7 @@ public class Inicio extends HttpServlet{
             // Step 9
             connection.close();
 
-        } catch (Exception e) {
+        } catch (Exception e) { //el error
             out.println("<tr><td colspan='5' class='tabla-error'>Error: " + e.getMessage() + "</td></tr>");
             e.printStackTrace();
         }
