@@ -1,3 +1,5 @@
+/* ============ CONFIGURACIÓN DE COLORES Y VARIABLES ============ */
+/* Variables CSS globales: paleta de colores, fondos y tonos reutilizados en todo el archivo */
 :root {
   --bg-dark: #0a1628;
   --bg-darker: #050d1a;
@@ -11,8 +13,12 @@
   --label-bg: rgba(20, 35, 60, 0.55);
 }
 
+/* ============ RESETEO DE MÁRGENES Y BOX-MODEL ============ */
+/* Reset universal: anula margen/padding por defecto y aplica box-sizing: border-box a todos los elementos */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ============ ESTILOS DE LA PÁGINA (BODY) ============ */
+/* Estilo base de la página: tipografía, fondo con gradiente radial superior y layout flex en columna centrada */
 body {
   font-family: 'Chakra Petch', sans-serif;
   background:
@@ -26,6 +32,8 @@ body {
   align-items: center;
 }
 
+/* ============ CONTENEDOR PRINCIPAL Y CABECERA ============ */
+/* Cabecera centrada con ancho máximo y separación inferior */
 header {
   text-align: center;
   width: 100%;
@@ -33,6 +41,7 @@ header {
   margin-bottom: 30px;
 }
 
+/* Título principal H1: tamaño fluido con clamp(), color de acento y mayúsculas con interletraje amplio */
 h1 {
   font-size: clamp(1.3rem, 3vw, 2.4rem);
   font-weight: 500;
@@ -42,6 +51,7 @@ h1 {
   text-transform: uppercase;
 }
 
+/* Subtítulo bajo el H1: texto atenuado con interletraje amplio */
 .subtitle {
   font-size: 1rem;
   color: var(--text-dim);
@@ -49,6 +59,8 @@ h1 {
   margin-bottom: 28px;
 }
 
+/* ============ TÍTULO CON LÍNEAS DECORATIVAS (BEFORE/AFTER) ============ */
+/* Título de sección como caja inline: actúa de anclaje para los pseudo-elementos decorativos laterales */
 .section-title {
   display: inline-block;
   font-size: 1.05rem;
@@ -59,6 +71,7 @@ h1 {
   position: relative;
   text-transform: uppercase;
 }
+/* Líneas horizontales decorativas a izquierda y derecha del título (degradado al color de acento) */
 .section-title::before,
 .section-title::after {
   content: '';
@@ -68,10 +81,12 @@ h1 {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent-dim));
 }
+/* Posiciona la línea decorativa a la izquierda del título y la espeja para que el degradado mire hacia fuera */
 .section-title::before { right: 100%; transform: scaleX(-1); }
 .section-title::after { left: 100%; }
 
 /* ============ TABLA DE TRENES ============ */
+/* Contenedor de la tabla: borde, fondo translúcido, sombra interior y scroll horizontal en pantallas estrechas */
 .table-wrapper {
   width: 100%;
   max-width: 1350px;
@@ -83,13 +98,14 @@ h1 {
   overflow-x: auto;
 }
 
+/* Tabla base: ancho completo, bordes colapsados y tipografía coherente con la página */
 .trenes-table {
   width: 100%;
   border-collapse: collapse;
   font-family: 'Chakra Petch', sans-serif;
   font-size: 0.95rem;
 }
-
+/* Cabeceras de la tabla (THEAD): fondo de acento tenue, mayúsculas espaciadas y borde inferior */
 .trenes-table thead th {
   background: rgba(77, 208, 225, 0.08);
   color: var(--accent);
@@ -103,6 +119,7 @@ h1 {
   white-space: nowrap;
 }
 
+/* Celdas del cuerpo de la tabla (TBODY): padding generoso y separadores sutiles entre filas */
 .trenes-table tbody td {
   padding: 14px 28px;
   color: var(--text-light);
@@ -110,36 +127,38 @@ h1 {
   letter-spacing: 0.5px;
   white-space: nowrap;
 }
-
+/* Elimina el borde inferior de la última fila para evitar línea doble con el contenedor */
 .trenes-table tbody tr:last-child td {
   border-bottom: none;
 }
-
+/* Habilita la transición suave del fondo en cada fila (necesaria para el efecto :hover de abajo) */
 .trenes-table tbody tr {
   transition: background 0.18s ease;
 }
-
+/* Resalta la fila al pasar el cursor por encima */
 .trenes-table tbody tr:hover {
   background: rgba(77, 208, 225, 0.05);
 }
-
+/* Columna ID: color de acento, peso fuerte y cifras tabulares (tabular-nums) para alinear dígitos verticalmente */
 .trenes-table .col-id {
   color: var(--accent);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
-
+/* Columna de acciones: alineada a la derecha y con ancho mínimo para que no ensanche la tabla */
 .trenes-table .col-acciones {
   text-align: right;
   width: 1%;
   white-space: nowrap;
 }
-
+/* Permite colocar varios <form> de acción en la misma celda en línea, sin romper el layout */
 .trenes-table .col-acciones form {
   margin: 0;
   display: inline-block;
 }
 
+/* ============ ESTADOS VACÍOS O ERRORES EN TABLA ============ */
+/* Mensaje informativo cuando la tabla está vacía o cuando se produce un error de carga */
 .tabla-vacia,
 .tabla-error {
   text-align: center;
@@ -148,12 +167,14 @@ h1 {
   font-style: italic;
   letter-spacing: 1px;
 }
+/* Variante de error: color rojizo y sin cursiva para diferenciar visualmente del estado vacío */
 .tabla-error {
   color: #ff7686;
   font-style: normal;
 }
 
-/* ============ BOTONES ============ */
+/* ============ BOTONES DE ACCIÓN Y ESTILOS INTERACTIVOS ============ */
+/* Fila de botones de acción bajo la tabla: flex con wrap y centrado horizontal */
 .action-row {
   display: flex;
   gap: 14px;
@@ -163,13 +184,14 @@ h1 {
   width: 100%;
   max-width: 1300px;
 }
+/* Anula el margen por defecto de los <form> dentro de la fila de acciones */
 .action-row form { margin: 0; }
-
+/* Wrapper centrado para subtítulos secundarios que aparecen entre secciones */
 .subsection-title-wrapper {
   text-align: center;
   margin-top: 40px;
 }
-
+/* Estilo base de los botones de acción: aspecto translúcido con borde de acento */
 .action-btn {
   background: rgba(77, 208, 225, 0.06);
   border: 1px solid var(--accent-dim);
@@ -184,21 +206,25 @@ h1 {
   text-transform: uppercase;
   border-radius: 2px;
 }
+/* Estado :hover del botón de acción: fondo más visible y resplandor (box-shadow) exterior */
 .action-btn:hover {
   background: rgba(77, 208, 225, 0.16);
   border-color: var(--accent);
   box-shadow: 0 0 20px rgba(77, 208, 225, 0.3);
 }
+/* Estado :active del botón: ligero desplazamiento vertical para sensación de pulsación */
 .action-btn:active {
   transform: translateY(1px);
 }
-
+/* Variante compacta del botón de acción (más pequeña, pensada para filas de tabla) */
 .action-btn-sm {
   padding: 7px 18px;
   font-size: 0.78rem;
   letter-spacing: 2px;
 }
 
+/* ============ BOTONES ESPECIALES (PELIGRO/COLISIÓN) ============ */
+/* Botón con estilo de peligro: paleta rojiza para acciones críticas (p. ej., simular colisión) */
 .colision-btn {
   background: rgba(225, 77, 96, 0.08);
   border-color: #e14d60;
@@ -207,12 +233,14 @@ h1 {
   padding: 14px 30px;
   font-weight: 600;
 }
+/* Estado :hover del botón de peligro: resplandor rojo más intenso */
 .colision-btn:hover {
   background: rgba(225, 77, 96, 0.2);
   border-color: #ff7686;
   box-shadow: 0 0 25px rgba(225, 77, 96, 0.4);
 }
 
+/* Botón secundario tipo "toggle": fondo transparente y borde sólido de acento */
 .toggle-btn {
   background: transparent;
   border: 1px solid var(--accent);
@@ -228,10 +256,12 @@ h1 {
   text-transform: uppercase;
   border-radius: 2px;
 }
+/* Estado :hover del toggle: relleno de acento tenue y resplandor */
 .toggle-btn:hover {
   background: rgba(77, 208, 225, 0.12);
   box-shadow: 0 0 18px rgba(77, 208, 225, 0.35);
 }
+/* Estado :active del toggle: pulsación con desplazamiento vertical */
 .toggle-btn:active {
   transform: translateY(1px);
 }
@@ -242,22 +272,25 @@ h1 {
   max-width: 1200px;
   position: relative;
 }
-
+/* Estado por defecto de las vistas conmutables: ocultas */
 .view {
   display: none;
   width: 100%;
   height: auto;
 }
+/* Vista activa: se hace visible y dispara la animación de aparición */
 .view.active {
   display: block;
   animation: fadeIn 0.4s ease;
 }
+/* Animación de fade-in con desplazamiento vertical leve para vistas que aparecen */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* SVG element styling */
+/* Cuerpo del tren (SVG): relleno y trazo del chasis principal */
 .train-body {
   fill: var(--train-fill);
   stroke: var(--train-stroke);
@@ -312,46 +345,55 @@ h1 {
   stroke-width: 1;
 }
 
-/* Interactive sensor groups */
+/* Grupo SVG interactivo de un sensor: cursor de puntero y sin subrayado/outline por defecto */
 .sensor-group {
   cursor: pointer;
   text-decoration: none;
   outline: none;
 }
+/* Habilita transiciones suaves para todos los hijos del grupo de sensor (caja, label, línea y punto) */
 .sensor-group .sensor-box,
 .sensor-group .sensor-label,
 .sensor-group .sensor-line,
 .sensor-group .sensor-dot {
   transition: all 0.2s ease;
 }
+/* :hover del grupo: aplica un drop-shadow al conjunto SVG para destacarlo */
 .sensor-group:hover {
   filter: drop-shadow(0 0 8px rgba(125, 228, 237, 0.7));
 }
+/* :hover: resalta la caja del sensor con fondo y borde más brillantes */
 .sensor-group:hover .sensor-box {
   fill: rgba(77, 208, 225, 0.18);
   stroke: var(--accent-bright);
   stroke-width: 2;
 }
+/* :hover: aclara el color del texto de la etiqueta */
 .sensor-group:hover .sensor-label {
   fill: var(--accent-bright);
 }
+/* :hover: hace la línea de conexión opaca y un poco más gruesa */
 .sensor-group:hover .sensor-line {
   stroke: var(--accent-bright);
   opacity: 1;
   stroke-width: 1.5;
 }
+/* :hover: aclara el color del punto del sensor */
 .sensor-group:hover .sensor-dot {
   fill: var(--accent-bright);
 }
+/* Quita el outline del navegador al recibir foco con teclado (se sustituye por el estilo de abajo) */
 .sensor-group:focus {
   outline: none;
 }
+/* :focus: marca la caja del sensor con borde brillante para mantener accesibilidad por teclado */
 .sensor-group:focus .sensor-box {
   stroke: var(--accent-bright);
   stroke-width: 2;
 }
 
 /* ============ SENSORES COMO FORM (foreignObject) ============ */
+/* <form> embebido en SVG mediante <foreignObject>: ocupa todo el contenedor sin márgenes */
 .sensor-form {
   margin: 0;
   padding: 0;
@@ -359,6 +401,7 @@ h1 {
   height: 100%;
   display: block;
 }
+/* Botón del sensor (alternativa accesible al grupo SVG): replica el aspecto de la caja del sensor */
 .sensor-btn {
   width: 100%;
   height: 100%;
@@ -378,6 +421,7 @@ h1 {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+/* :hover del botón sensor: mismo realce que la versión SVG (fondo, borde y resplandor) */
 .sensor-btn:hover {
   background: rgba(77, 208, 225, 0.18);
   border-color: var(--accent-bright);
@@ -385,12 +429,14 @@ h1 {
   color: var(--accent-bright);
   box-shadow: 0 0 8px rgba(125, 228, 237, 0.7);
 }
+/* :focus del botón sensor: borde brillante para accesibilidad por teclado */
 .sensor-btn:focus {
   outline: none;
   border-color: var(--accent-bright);
 }
 
 /* ============ FORMULARIOS ============ */
+/* Caja contenedora de un formulario: ancho centrado, borde de acento y sombra interior */
 .form-container {
   width: 100%;
   max-width: 600px;
@@ -401,7 +447,7 @@ h1 {
   background: rgba(10, 22, 40, 0.6);
   box-shadow: 0 0 24px rgba(77, 208, 225, 0.08) inset;
 }
- 
+ /* Bloque informativo del formulario: aviso superior con borde inferior separador */
 .form-info {
   font-size: 0.88rem;
   color: var(--text-dim);
@@ -411,16 +457,18 @@ h1 {
   letter-spacing: 1px;
   line-height: 1.8;
 }
+/* Resalta valores destacados (p. ej., un ID o un nombre) dentro del bloque informativo */
 .form-info span {
   color: var(--accent);
   font-weight: 600;
   letter-spacing: 1.5px;
 }
- 
+  /* Espacio vertical entre cada campo del formulario */
+
 .form-field {
   margin-bottom: 22px;
 }
- 
+/* Etiqueta del campo: estilo "tag" en mayúsculas con interletraje amplio y color de acento */
 .form-field label {
   display: block;
   font-size: 0.8rem;
@@ -430,7 +478,7 @@ h1 {
   margin-bottom: 10px;
   font-weight: 600;
 }
- 
+ /* Campos de entrada (text, number, datetime-local): aspecto coherente con la paleta */
 .form-field input[type='text'],
 .form-field input[type='number'],
 .form-field input[type='datetime-local'] {
@@ -445,18 +493,18 @@ h1 {
   letter-spacing: 1px;
   transition: all 0.2s ease;
 }
- 
+ /* Estado :focus del input: borde de acento y resplandor exterior para indicar foco */
 .form-field input:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 8px rgba(77, 208, 225, 0.3);
 }
- 
+ /* Contenedor de botones binarios (Sí/No, On/Off): dos botones flex en una sola fila */
 .binary-buttons {
   display: flex;
   gap: 14px;
 }
- 
+ /* Tamaño grande para los botones binarios: reparten el ancho a partes iguales y ganan presencia visual */
 .binary-buttons .action-btn {
   flex: 1;
   font-size: 1.6rem;
@@ -464,7 +512,7 @@ h1 {
   padding: 22px;
   font-weight: 600;
 }
-
+/* Caja del gráfico: contenedor con altura fija para incrustar el componente de gráficos */
 .grafico-container {
   width: 100%;
   max-width: 1400px;
@@ -478,7 +526,7 @@ h1 {
 }
 
 /* ============ VISTA DE COLISIÓN ============ */
-
+/* Versión estática del sensor (sin botón) usada en la vista de colisión: solo muestra estado */
 .sensor-static {
   width: 100%;
   height: 100%;
@@ -496,25 +544,25 @@ h1 {
   text-transform: uppercase;
   text-align: center;
 }
-
+/* Variante "en alerta" del sensor estático: paleta roja y animación pulsante */
 .sensor-static.alert {
   background: rgba(225, 77, 96, 0.18);
   border: 2px solid #ff7686;
   color: #ff7686;
   animation: alertPulse 1.4s ease-in-out infinite;
 }
-
+/* Variante "en alerta" de la línea de conexión del sensor: rojo y trazo más grueso */
 .sensor-line.alert {
   stroke: #ff7686;
   opacity: 1;
   stroke-width: 1.6;
 }
-
+/* Animación de pulsación para alertas: latido del box-shadow rojo (in/out) */
 @keyframes alertPulse {
   0%, 100% { box-shadow: 0 0 14px rgba(225, 77, 96, 0.45); }
   50%       { box-shadow: 0 0 26px rgba(225, 77, 96, 0.75); }
 }
-
+/* Barra de estado de colisión sobre el gráfico: ancho máximo y centrada */
 .colision-status {
   width: 100%;
   max-width: 1200px;
@@ -527,11 +575,13 @@ h1 {
   font-size: 1rem;
   text-transform: uppercase;
 }
+/* Estado OK de la barra de colisión: paleta de acento (sin alerta) */
 .colision-status.ok {
   border: 1px solid var(--accent-dim);
   color: var(--accent);
   background: rgba(77, 208, 225, 0.06);
 }
+/* Estado de alerta de la barra de colisión: paleta roja con animación pulsante */
 .colision-status.alert {
   border: 1px solid #ff7686;
   color: #ff7686;
