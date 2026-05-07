@@ -8,8 +8,9 @@ public class editarTren extends HttpServlet {
         throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
-        String idTren = request.getParameter("idTren");
-
+            
+        String idTren = request.getParameter("idTren");  //nos viene dado
+        //declara variables vacias
         String modelo        = "";
         String fechaCreacion = "";
         String fechaRevision = "";
