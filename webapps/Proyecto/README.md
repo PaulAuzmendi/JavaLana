@@ -1,20 +1,21 @@
 # --- Ander Melendez ---
+- actualizarTren
 - anadirTren
-- insertarTren
-- eliminarTren
-- insertarTren
-- Inicio
 - colision
+- editarTren
+- eliminarTren
+- Inicio
+- insertarTren
 - ordenarTren
 
 # --- Paul Auzmendi ---
 - anadirRegistro
-- insertarRegistro
-- cambiarRegistro
+- cambiarEstado
 - editarRegistro
+- eliminarRegistro
 - grafico
+- insertarRegistro
 - ordenarRegistro
-- verTren
 - verSensor
 - verDatos
-- cambiarEstado
+- verTren
