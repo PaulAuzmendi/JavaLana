@@ -13,19 +13,22 @@ public class colision extends HttpServlet {
         String idTren = request.getParameter("idTren");
         String modelo = "";
 
-        // IDs de los sensores Lidar y Radar (los que aparecen en el top view)
+        // IDs de los sensores Lidar y Radar
+            
         // 4,7 = izquierda  |  5,8 = centro  |  6,9 = derecha
         Map<Integer, Double> ultimoValor = new HashMap<>();
         boolean hayColision = false;
 
         try {
+            
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             String rutaAbsoluta = getServletContext().getRealPath("/Trenes2.accdb");
             String url = "jdbc:ucanaccess://" + rutaAbsoluta;
             Connection connection = DriverManager.getConnection(url);
             Statement stmt = connection.createStatement();
 
-            // Modelo del tren
+            // Modelo del tren para cabecera
+            
             ResultSet rsT = stmt.executeQuery(
                 "SELECT Modelo FROM Trenes WHERE ID_Tren = " + idTren);
             if (rsT.next()) modelo = rsT.getString("Modelo");
@@ -73,6 +76,7 @@ public class colision extends HttpServlet {
         out.println("</header>");
 
         // Banner de estado
+            
         if (hayColision) {
             out.println("<div class='colision-status alert'>&#9888; COLISIóN DETECTADA</div>");
         } else {
@@ -151,6 +155,7 @@ public class colision extends HttpServlet {
         out.println("  </foreignObject>");
 
         // VELOCIMETRO GPS (12) — no es lidar/radar, nunca alerta
+            
         out.println("  <circle class='sensor-dot' cx='600' cy='335' r='5'/>");
         out.println("  <path class='sensor-line' d='M 280 335 L 600 335'/>");
         out.println("  <foreignObject x='60' y='314' width='220' height='42'>");
