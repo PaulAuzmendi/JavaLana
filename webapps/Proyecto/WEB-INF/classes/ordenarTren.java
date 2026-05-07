@@ -26,7 +26,7 @@ public class ordenarTren extends HttpServlet{
         out.println("  <div class='section-title'>Ordenar por:</div>");
         out.println("</header>");
 
-        // ===== Botones de ordenación =====
+        // ===== Botones de ordenación ===== //TODOS devuelven orden (de utiliza en inicio)
         out.println("<div class='action-row'>");
 
         out.println("  <form action='Inicio' method='get'>");
