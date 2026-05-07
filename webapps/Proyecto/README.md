@@ -1,4 +1,4 @@
-# --- Ander ---
+# --- Ander Melendez ---
 - anadirTren
 - insertarTren
 - eliminarTren
@@ -7,7 +7,7 @@
 - colision
 - ordenarTren
 
-# --- Paul ---
+# --- Paul Auzmendi ---
 - anadirRegistro
 - insertarRegistro
 - cambiarRegistro
